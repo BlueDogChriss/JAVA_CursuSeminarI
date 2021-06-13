@@ -1,0 +1,42 @@
+Să se definească o clasă Factura (denumireClient - șir de caractere, dataEmitere - dată calendaristică, linii - colecție de obiecte de tip linie) și o clasă internă statică Linie (produs - șir de caractere, preț - număr cu zecimale, cantitate - întreg).
+
+Clasa Factura trebuie să conțină minim:
+
+constructor cu parametri
+metode de citire pentru toate datele stocate
+posibilitatea de a adăuga linii noi în factură
+Clasa Linie trebuie să fie imutabilă.
+
+Cerințe - clasa principală ProgramFacturi:
+
+1) Să se definească o funcție generareListaFacturi care să primească dată minimă și un număr n de facturi și care:
+
+ să genereze o lista de n obiecte factură cu 1-10 linii
+ datele (clienți, produse, preturi) din liste fixe
+2) Să se definească o funcție salvareFacturi pentru salvarea unei liste de facturi într-un fișier binar. Fișierul va fi compus din înregistrări de forma:
+
+denumire client - string
+an / luna / zi - întregi
+număr linii - întreg
+(produs - string, preț - double, cantitate - întreg) x număr linii
+3) Să se scrie o funcție incarcareFacturi care să citească o listă de facturi dintr-un fișier binar în formatul de mai sus.
+
+4) Să se scrie o funcție generareRaport care să primească o listă de facturi și o denumire de fișier și să genereze un raport text de forma:
+
+SC DOMINO COSTI SRL                        5 facturi, TOTAL:  2184.23 RON
+EURIAL BROKER DE ASIGURARE SRL             5 facturi, TOTAL:  1662.47 RON
+ALEXANDER SRL                              4 facturi, TOTAL:  1540.13 RON
+METAL INOX IMPORT EXPOSRT SRL              4 facturi, TOTAL:  1441.17 RON
+INTERFLOOR SYSTEM SRL                      4 facturi, TOTAL:  1331.01 RON
+SIBLANY SRL                                3 facturi, TOTAL:  1274.65 RON
+ALCOR CONSTRUCT SRL                        2 facturi, TOTAL:   874.66 RON
+MERCURY  IMPEX  2000  SRL                  2 facturi, TOTAL:   750.09 RON
+SC TRANSCRIPT SRL                          1 facturi, TOTAL:   129.16 RON
+Unde:
+
+există o linie pentru fiecare client care conține denumirea, numărul de facturi și valoarea totală a acestora
+lista de clienți este sortată descrescător în funcție de valoarea totală
+
+
+Exercițiu:
+Să se rescrie funcțiile salvareFacturi și incarcareFacturi (din exemplul ProgramFacturi de la seminar) pentru a folosi fișiere text în loc de fișiere binare (restul aplicației trebuie să rămână identică). Formatul de salvare și clasele utilizate sunt la alegere.

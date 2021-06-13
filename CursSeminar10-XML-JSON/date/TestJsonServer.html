@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+
+    <div class="form-group">
+        <label for="denumire">Denumire</label>
+        <input class="form-control" id="denumire" value="populatie judete">
+    </div>
+    <div class="form-group">
+        <label for="valori">Valori</label>
+        <input class="form-control" id="valori" value="1883425,772348,762886,691106,684082,683540,660544,634810,616168,612431,575398,550846,549217,536167,518745,478659,470766,451069,436400,430629,418565,412626,397322,395499,388738,380123,371714,344360,342376,341594,340310,321212,310867,306691,295579,286225,281422,274148,265390,224384,213083,210177">
+    </div>
+
+    <button class="btn btn-primary my-2">Trimite Cerere</button>
+
+    <div class="form-group my-3">
+        <label>Răspuns:</label>
+        <textarea class="form-control" rows="8"></textarea>
+    </div>
+
+</div>
+<script type="text/javascript">
+document.querySelector('button').addEventListener('click', testServer);
+
+async function testServer() {
+    var indicator = {
+        denumire: document.querySelector('#denumire').value,
+        valori: eval('[' + document.querySelector('#valori').value + ']')
+    };
+    var raspuns = await fetch('http://localhost:8090/procesareIndicator', {
+        method: 'post',
+        body: JSON.stringify(indicator)
+    });
+    var date = await raspuns.json();
+
+    var text = '';
+    for (var camp in date) {
+        text += camp + ': ' + date[camp] + '\n';
+    }
+    document.querySelector('textarea').value = text;
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+TEMA 1:
+
+Pe exemplul Program03_CitireObiect.java să se opereze următoarele modificări:
+
+1. Clasa Produs să fie transformată în clasă imutabilă. Clasa va avea doar un constructor cu trei parametri (denumire, cantitate, pret).
+
+2. Să se rescrie metoda CitireObiect astfel încât să funcționeze în noile condiții: trebuie să folosească constructorul cu parametri (în loc de constructor implicit și funcții set) pentru construirea rezultatului și setarea valorilor. Se presupune că ordinea de declarare a câmpurilor în interiorul clasei corespunde cu ordinea parametrilor constructorului.
+
+
+TEMA 2 OPȚIONAL - Serializare text folosind Reflection
+
+Să se scrie o pereche de funcții de forma:
+
+static void Serializare(String caleFisier, Object obiect)
+static Object Deserializare(String caleFisier)
+care să permită serializarea / deserializarea unui obiect folosind fișiere text.
+
+
+
+Restricții asupra obiectelor primite ca parametru:
+
+clasele din care fac obiectele au un constructor fără parametri
+câmpurile din clase pot fi de tip String, int sau altă clasă care respectă restricțiile
+
+
+Recomandări de rezolvare:
+
+
+
+a) Formatul fișierului text
+
+
+
+Pentru un obiect vom scrie în fișier:
+
+
+
+denumire clasa
+numar campuri
+denumire câmp
+valoare câmp
+
+
+Dacă un câmp este de tip int sau String, atunci 'valoare câmp' va fi un rând cu valoarea respectivă.
+
+Dacă un câmp este de tip obiect, atunci 'valoare câmp'va fi compus din mai multe rânduri după formatul de mai sus.
+
+
+
+Exemplu:
+
+Persoana
+
+3
+nume
+Ion
+varsta
+23
+adresa
+Adresa
+1
+oras
+Nehoiu
+
+
+b) La serializare utilizați o funcție recursivă de forma:
+
+void Serializare(PrintWriter fisier, Object obiect)
+
+
+Funcția static static void Serializare(String caleFisier, Object obiect) doar va deschide fișierul și va apela funcția recursivă.
+
+
+
+Funcția recursivă:
+
+- scrie 'denumire clasa'
+
+- scrie 'numar campuri'
+
+- pentru fiecare câmp
+
+   - scrie 'denumire câmp'
+
+   - pentru int / String scrie 'valoare câmp'
+
+   - pentru altceva (un obiect) se autoapelează recursiv (cu valoarea câmpului ca parametru)
+
+
+
+c) La deserializare se procedează similar - se adaugă o funcție recursivă de forma:
+
+static Object Deserializare(Scanner scanner)
